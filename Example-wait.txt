@@ -1,0 +1,117 @@
+//--------------------------------------- IMPLICIT WAIT -------------------------------------//
+
+		System.setProperty("webdriver.chrome.driver", "D:\\BrowserDrivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.navigate().to("http://www.facebook.com");
+
+        /* 
+        * "List <WebElement> a" element is not present in FACEBOOK page 
+		* so webdrive will wait for given number Time
+        */
+        List <WebElement> a = driver.findElements(By.xpath("html/body/div[5]/table/tbody/tr/td[2]"));
+		System.out.println("size - " + a.size());
+
+        /*
+        * since the above element is not present on FB page, it will return 0(zero) and executes next cmd
+        */
+
+		driver.findElement(By.id("email")).sendKeys("Hello..");
+
+
+//------------------------------------ EXPLICIT WAIT -------------------------------------//
+
+   		System.setProperty("webdriver.chrome.driver", "D:\\BrowserDrivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		WebDriverWait explictWait = new WebDriverWait(driver, 30);
+
+		driver.navigate().to("http://www.facebook.com");
+		
+		explictWait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("email"))));
+		
+		System.out.println("hello...");
+
+//------------------------------------ FLUENT WAIT -------------------------------------//
+
+    /********************** EXAMPLE 1 - Error is displayed since there is no element on the page ********************/
+
+/*
+* In this example timeOut exception is displayed since the element is not present on the page
+*/
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Wait;
+
+import com.google.common.base.Function;
+
+public class FluentWait {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "D:\\BrowserDrivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.navigate().to("http://www.facebook.com");
+	
+		Wait<WebDriver> wait = new org.openqa.selenium.support.ui.FluentWait<>(driver)
+				.withTimeout(30, TimeUnit.SECONDS)
+				.pollingEvery(5, TimeUnit.SECONDS)
+				.ignoring(NoSuchElementException.class);
+
+		WebElement email2 = (WebElement) wait.until(new Function<WebDriver, WebElement>() {
+
+			public WebElement apply(WebDriver driver) {
+				return driver.findElement(By.id("textbox1"));
+			}
+		});
+		email2.sendKeys("iLearn");
+		System.out.println("email 2 - " + email2.getAttribute("value"));
+	}
+
+}
+
+/********************** EXAMPLE 2 - Element found ********************/
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Wait;
+
+import com.google.common.base.Function;
+
+public class FluentWait {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "D:\\BrowserDrivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.navigate().to("http://www.facebook.com");
+		
+		Wait<WebDriver> wait = new org.openqa.selenium.support.ui.FluentWait<>(driver)
+				.withTimeout(30, TimeUnit.SECONDS)
+				.pollingEvery(5, TimeUnit.SECONDS)
+				.ignoring(NoSuchElementException.class);
+
+		WebElement email2 = (WebElement) wait.until(new Function<WebDriver, WebElement>() {
+
+			public WebElement apply(WebDriver driver) {
+				return driver.findElement(By.id("email"));
+			}
+		});
+		email2.sendKeys("iLearn");
+		System.out.println("email 2 - " + email2.getAttribute("value"));
+	}
+
+}
+----------------------------------*****************************************---------------------------------- 

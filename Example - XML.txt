@@ -1,0 +1,247 @@
+//------------ Example 1 - Simple Test using XML file
+
+    /*
+    *   In this example 1 test passes and 1 fails
+    */
+    1.1 JAVA PROGRAM
+    -------------------------------------
+    import static org.testng.Assert.assertEquals;
+
+    import org.testng.annotations.Test;
+
+    public class TestNGClass {
+	
+	@Test
+	public void m1(){
+		System.out.println("Hello..!!!");
+		assertEquals(2, 3);
+	}
+	
+	@Test
+	public void m2(){
+		System.out.println("Welcome to Ilearn QA");
+		assertEquals(2, 2);
+	}
+    }
+
+    1.2 XML FILE
+    ---------------------------------------------
+    <?xml version="1.0" encoding="UTF-8"?>
+    <suite name="iLearn Suite 1">
+	    <test name="Test1">
+		    <classes>
+			    <class name="ilearn.TestNGClass"></class>
+	    	</classes>
+	    </test>
+	    <test name="Test2">
+		    <classes>
+			    <class name="ilearn.TestNGClass2"></class>
+    		</classes>
+	    </test>
+    </suite>
+
+//----------******************************************************************************----------------//
+
+//------------ Example 2 - group the test cases - <groups> tag
+
+        2.1 JAVA PROGRAM
+        ---------------------------------------
+
+        import static org.testng.Assert.assertEquals;
+
+        import org.testng.annotations.Test;
+
+        public class TestNGClass {
+	
+	    @Test(groups={"functest"})
+	    public void m1(){
+		    System.out.println("Test 1 - functest");
+		    assertEquals(2, 3);
+	    }
+	
+	    @Test(groups={"checkTest"})
+	    public void m2(){
+		    System.out.println("Test 2 - checkTest");
+    		assertEquals(2, 2);
+	    }
+	
+	    @Test(groups={"functest","checkTest"})
+    	public void m3(){
+	    	System.out.println("Test 3 - checkTest & functest");
+	    }
+        }
+
+    2.2 XML FILE
+    ---------------------------------------------
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <suite name="iLearn Suite 1">
+	    <test name = "Group Involving functest">
+		    <groups>
+			    <run>
+				    <include name="functest"></include>
+    			</run>
+    		</groups>
+	    	<classes>
+		    	<class name = "ilearn.TestNGClass"></class>
+		    </classes>
+    	</test>
+	    <test name = "Group Involving checkTest">
+	    	<groups>
+		    	<run>
+			    	<include name="checkTest"></include>
+    			</run>
+	    	</groups>
+		    	<classes>
+			    	<class name = "ilearn.TestNGClass"></class>
+    			</classes>
+    	</test>
+    </suite>
+
+//----------******************************************************************************----------------//
+
+//------------ Example 3 - TestNG Dependancy test case
+
+    3.1 JAVA PROGRAM
+    ---------------------------------------------
+    import static org.testng.Assert.assertEquals;
+
+    import org.testng.annotations.Test;
+
+    public class DependencyTest {
+	
+	@Test
+	public void m1(){
+		System.out.println("m1");
+		assertEquals(2, 3);
+	}
+	
+	@Test(dependsOnMethods = { "m1" })
+	public void m2(){
+		System.out.println("m2");
+		assertEquals(2, 2);
+	}
+	
+	@Test()
+	public void m3(){
+		System.out.println("m3");
+	}
+
+	@Test(dependsOnMethods = { "m3" })
+	public void m4(){
+		System.out.println("m4");
+	}
+    }
+
+    3.2 XML FILE
+    ---------------------------------------------
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <suite name="Suite 2">
+	    <test name = "DependencyTestUsingAnnotation">
+ 	    	<classes>
+ 	    		<class name="test.il.DependencyTest"></class>
+ 	    	</classes>	
+ 	    </test>
+    </suite>
+
+//----------******************************************************************************----------------//
+
+//------------ Example 4 - TestNG Priority test case
+
+    4.1 JAVA PROGRAM
+    ---------------------------------------------
+
+    import static org.testng.Assert.assertEquals;
+
+    import org.testng.annotations.Test;
+
+    public class Priority {
+        
+	@Test(priority=1)
+	public void m1(){
+		System.out.println("m1");
+		assertEquals(2, 3);
+	}
+	
+	@Test(priority=4)
+	public void m2(){
+		System.out.println("m2");
+		assertEquals(2, 2);
+	}
+	
+	@Test(priority=2)
+	public void m3(){
+		System.out.println("m3");
+	}
+
+	@Test(priority=3)
+	public void m4(){
+		System.out.println("m4");
+	}
+    }
+
+    4.2 XML FILE
+    ---------------------------------------------
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <suite name="Suite 2">
+	    <test name = "PriorityTestUsingAnnotation">
+ 		    <classes>
+ 			    <class name="test.il.Priority"></class>
+     		</classes>	
+ 	    </test>
+    </suite>
+
+//----------******************************************************************************----------------//
+
+//------------ Example 5 - TestNG Parameter Passing
+
+    5.1 JAVA PROGRAM
+    ---------------------------------------------
+
+    import org.testng.annotations.Parameters;
+    import org.testng.annotations.Test;
+
+    public class ParameterizedClass {
+	
+	@Test
+	@Parameters("name")
+	public void m1(String myName){
+		System.out.println("Name - " + myName);
+		
+	}
+    }
+
+    5.2 XML FILE
+    ---------------------------------------------
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <suite name="Suite 2">
+ 		<test name="ParameterPassing">
+ 	    	<parameter name="name" value="iLearn"></parameter>
+ 		    <classes>
+ 			    <class name="test.il.ParameterizedClass"></class>
+    		</classes> 			
+ 		</test>
+    </suite>
+
+//----------******************************************************************************----------------//
+
+//------------ Example 6 - Running different Suites in 1 suite file
+    /*
+    * 1. Create 2 seperate PACKAGES
+    * 2. Create xml file for both the PACKAGES with the PACKAGE
+    * 3. Now create testNG.xml in PROJECT FOLDER
+    * 4. Use below code in testNG.xml file
+    */
+
+    6.1 testNG.xml
+    ----------------------------
+    <?xml version="1.0" encoding="UTF-8"?>
+    <suite name="All Suites">
+	    <suite-file path="src\ilearn\ilearn.xml"></suite-file>
+	    <suite-file path="src\test\il\example.xml"></suite-file>
+    </suite>
+
+

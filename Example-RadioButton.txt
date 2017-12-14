@@ -1,0 +1,30 @@
+	System.setProperty("webdriver.chrome.driver", "D:\\BrowserDrivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.navigate().to("file:///D:/iLearn/index.html");
+		Thread.sleep(5000);
+		
+		List<WebElement> radioButton = driver.findElements(By.xpath("//input[@type='radio']"));
+		
+		for (int i = 0; i < radioButton.size(); i++) {
+			
+			String txt = radioButton.get(i).getAttribute("txt");
+		
+            //--------- validate if text = male
+			if(txt.equals("male")){
+				System.out.println("Inside IF - Male");
+			}
+
+            //----------- Click on Female option
+			if(txt.equals("female")){
+				radioButton.get(i).click();
+				System.out.println("Inside second IF");
+			}
+
+            //------------ Validate Male option is selected or not
+			if(txt.equals("male")){
+				System.out.println("res - " + radioButton.get(i).isSelected());
+			}
+			Thread.sleep(5000);
+		}
+
+//------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,40 @@
+// --------------------------- isEnabled() -----------------------------------
+
+		System.setProperty("webdriver.chrome.driver", "D:\\BrowserDrivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.navigate().to("file:///D:/iLearn/index.html");
+		Thread.sleep(5000);
+		
+    	WebElement textbox1 = driver.findElement(By.id("textbox1"));
+		boolean result1 = txtbox.isEnabled();
+		System.out.println("result1 - " + result1);
+
+        WebElement textbox = driver.findElement(By.id("textbox2"));
+		boolean result = txtbox.isEnabled();
+		System.out.println("result - " + result);
+		
+----------------------------------*****************************************----------------------------------
+
+// --------------------------- isDisplayed() -----------------------------------
+
+		System.setProperty("webdriver.chrome.driver", "D:\\BrowserDrivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.navigate().to("file:///D:/iLearn/index.html");
+		Thread.sleep(5000);
+		WebElement txtbox = driver.findElement(By.id("textbox2"));
+		boolean result = txtbox.isDisplayed();
+		System.out.println("result - " + result);
+
+----------------------------------*****************************************----------------------------------
+
+// --------------------------- isSelected() -----------------------------------
+
+		System.setProperty("webdriver.chrome.driver", "D:\\BrowserDrivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.navigate().to("file:///D:/iLearn/index.html");
+		Thread.sleep(5000);
+		WebElement checkboxSelected = driver.findElement(By.xpath("//input[@class='checkboxSelected']"));
+		boolean res = checkboxSelected.isSelected();
+		System.out.println("res - " + res);
+
+----------------------------------*****************************************----------------------------------  

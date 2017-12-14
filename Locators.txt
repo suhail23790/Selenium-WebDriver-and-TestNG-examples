@@ -1,0 +1,123 @@
+1. tagName
+-----------
+    <input id="textbox1" type="text" class="simpleTextbox" placeholder="Enter Text" name="nameTag"></input>
+
+    Locator - 
+        tagName("input")
+                
+        --****** driver.findElement(By.tagName("input"));  ******--
+
+2. id
+----------
+    <input id="textbox1" type="text" class="simpleTextbox" placeholder="Enter Text" name="nameTag"></input>
+
+    Locator - 
+        id("textbox1")
+
+        --***** driver.findElement(By.id("textbox1")); *******--
+
+3. class
+-------------
+    <input id="textbox1" type="text" class="simpleTextbox" placeholder="Enter Text" name="nameTag"></input>
+
+    Locator -
+        class("simpleTextbox")
+
+        --****** driver.findElement(By.class("simpleTextbox")); ******--
+
+4. linkText
+-------------
+    <a href="Home.html">Home</a>
+
+    Locator -
+        linkText("Home")
+        
+        --****** driver.findElement(By.linkText("Home")); *****--
+
+5. partialLinkText
+----------------------
+        <a href="NewPage.html">Click here..! To view the Agenda</a>
+
+    Locator - 
+        partialLinkText("Click here")
+
+        --****** driver.findElement(By.partialLinkText("Click here"));  ******--
+
+6. xpath
+------------
+            <html>
+                <body>
+                    <input id="textbox1" type="text" class="simpleTextbox" placeholder="Enter Text" name="nameTag"></input>
+                </body>
+            </html>
+
+        i. Absolute xpath
+        --------------------
+            Locator -
+                //html/body/input
+
+                --****** driver.findElement(By.xpath("//html/body/input")); *******--
+
+        ii. Relative xpath
+        ----------------------
+            Locator -
+                //input[@id="textbox1"]
+
+                --***** driver.findElement(By.xpath("//input[@id="textbox1"]")); *******--
+
+        xpath using contains    
+        -----------------------
+            Locator -
+            //input(contains(@id,"textbox1"))
+
+            --****** driver.findElement(By.xpath("//input(contains(@id,"textbox1"))")); *******--
+
+7. CSS selector
+-----------------
+
+     <input id="textbox1" type="text" class="simpleTextbox" placeholder="Enter Text" name="nameTag"></input>
+
+    i. ID
+    ----------
+        Syntax
+        -------
+            <HTML tag><#><Value of ID attribute>
+
+            Example -
+            -----------
+            input#textbox1
+
+            --******** driver.findElement(By.cssSelector("input#textbox1")); *******--
+
+            -: HTML tag – It is the tag which is used to denote the web element which we want to access.
+            -: "#" – The hash sign is used to symbolize ID attribute. It is mandatory to use hash sign if ID attribute is being used to create CSS Selector.
+            -: Value of ID attribute – It is the value of an ID attribute which is being accessed.
+            -: The value of ID is always preceded by a hash sign.
+
+    ii. CLASS
+    -----------
+        Syntax
+        -------
+            <HTML tag><.><Value of Class attribute>
+
+            Example -
+            ------------
+            input.simpleTextbox
+
+            --******** driver.findElement(By.cssSelector("input.simpleTextbox")); *******--
+
+            -: "." – The dot sign is used to symbolize Class attribute. It is mandatory to use dot sign if a Class attribute is being used to create CSS Selector.
+            -: The value of Class is always preceded by a dot sign.
+
+    iii. Attribute
+    ----------------
+        Syntax
+        ---------
+            <HTML tag><[attribute=Value of attribute]>
+
+            Example
+            ---------
+            input[type="text"]
+
+            -: Attribute – It is the attribute we want to use to create CSS Selector. It can value, type, name etc. It is recommended to choose an attribute whose value uniquely identifies the web element.
+            -: Value of attribute – It is the value of an attribute which is being accessed.

@@ -1,0 +1,17 @@
+		System.setProperty("webdriver.chrome.driver", "D:\\BrowserDrivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.navigate().to("file:///D:/iLearn/index.html");
+		Thread.sleep(5000);
+		WebElement dropdown = driver.findElement(By.tagName("select"));
+		Select select = new Select(dropdown);
+
+        //------------ selectByIndex() -------------------------//
+	        	select.selectByIndex(1);
+
+        //------------ selectByValue() -------------------------//
+	        	select.selectByValue("Protractor");
+
+        //------------ selectByVisibleText() -------------------------//
+		        select.selectByVisibleText("Selenium");
+		
+        Thread.sleep(5000);

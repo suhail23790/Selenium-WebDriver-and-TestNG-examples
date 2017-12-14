@@ -1,0 +1,51 @@
+// --------------------------- MAXIMIZE BROWSER -----------------------------------
+        
+        driver.manage().window().maximize();
+
+----------------------------------*****************************************----------------------------------        
+1. Different Browsers
+	- 2.1 Firefox
+        System.setProperty("webdriver.gecko.driver", "D:\\BrowserDrivers\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+
+    - 2.2 Chrome
+    	System.setProperty("webdriver.chrome.driver", "D:\\BrowserDrivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+    
+    - 2.3 IE
+         System.setProperty("webdriver.ie.driver", "D:\\BrowserDrivers\\IEDriverServer.exe");
+		 WebDriver driver = new InternetExplorerDriver();
+
+----------------------------------*****************************************----------------------------------        
+2. GET URL's
+    - 1.1 get() - 
+        driver.get("http://www.google.com");
+        System.out.println("Browser title - " + driver.getTitle());
+
+    - 1.2 navigate()
+        driver.navigate().to("http://www.facebook.com");
+        System.out.println("Browser title - " + driver.getTitle());
+
+----------------------------------*****************************************----------------------------------        
+3. Browser Actions
+    - 3.1 refresh() - 
+        driver.get("http://www.facebook.com");
+		Thread.sleep(10000);
+		driver.navigate().refresh();
+
+    - 3.2 back() -
+        driver.get("http://www.facebook.com");
+		Thread.sleep(10000);
+		driver.get("http://www.google.com");
+		Thread.sleep(10000);
+		driver.navigate().back();
+
+    - 3.3 forward() - 
+   		driver.get("http://www.facebook.com");
+		Thread.sleep(10000);
+		driver.get("http://www.google.com");
+		Thread.sleep(10000);
+		driver.navigate().back();
+		Thread.sleep(10000);
+		driver.navigate().forward();
+----------------------------------*****************************************----------------------------------        

@@ -1,0 +1,51 @@
+----------------------------------*****************************************---------------------------------- 
+
+    System.setProperty("webdriver.chrome.driver", "D:\\BrowserDrivers\\chromedriver.exe");
+	WebDriver driver = new ChromeDriver();
+	driver.navigate().to("file:///D:/iLearn/index.html");
+	Thread.sleep(5000);
+	List <WebElement> a = driver.findElements(By.xpath("html/body/div[5]/table/tbody/tr/td[2]"));
+	List <WebElement> checkbox = driver.findElements(By.xpath("//input[@class='checkbox']"));
+	System.out.println("size - " + a.size());
+	for (int i = 0; i < a.size(); i++) {
+	String txt = a.get(i).getText();
+		if(txt.equalsIgnoreCase("Selenium")){
+			System.out.println("Inside IF");
+			checkbox.get(i).click();
+			Thread.sleep(10000);
+		}
+	}
+
+////////////////////////// - complete Code
+import java.awt.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+public class Example1 {
+
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.gecko.driver", "D:\\BrowserDrivers\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+				 
+		driver.get("file:///D:/iLearn/index.html");
+		Thread.sleep(5000);
+		java.util.List<WebElement> a = driver.findElements(By.xpath("html/body/div[5]/table/tbody/tr/td[2]"));
+		java.util.List<WebElement> checkbox = driver.findElements(By.xpath("//input[@class='checkbox']"));
+		System.out.println("size - " + a.size());
+		for (int i = 0; i < a.size(); i++) {
+		String txt = a.get(i).getText();
+			if(txt.equalsIgnoreCase("Selenium")){
+				System.out.println("Inside IF");
+				checkbox.get(i).click();
+				Thread.sleep(10000);
+			}
+		}
+	}
+
+}
+----------------------------------*****************************************---------------------------------- 
